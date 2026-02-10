@@ -12,10 +12,17 @@ public class Player : MonoBehaviour
     {
         //Separación de lógicas
         Vector2 inputVector = gameInput.GetMovementVectorNorm();
+        float playerSize = 1f;
 
         Vector3 movementDirection;
         movementDirection = new Vector3(inputVector.x, 0f, inputVector.y);
-        transform.position += movementDirection * movementsSpeed * Time.deltaTime;  //Time.deltatime para que la velociadad sea independiente del framerate.
+
+        bool canPlayerMove = !Physics.Raycast(transform.position, movementDirection, playerSize);
+
+        if (canPlayerMove)
+        {
+            transform.position += movementDirection * movementsSpeed * Time.deltaTime;  //Time.deltatime para que la velociadad sea independiente del framerate.
+        }
 
         //Euler o Quaternion mes complicats. Slerp interpola entre 2 puntos (Transiciones sin Mixamo)
         transform.forward = Vector3.Slerp(transform.forward, movementDirection, movementsSpeed * Time.deltaTime);
