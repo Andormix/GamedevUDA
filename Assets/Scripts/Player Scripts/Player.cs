@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -12,16 +13,43 @@ public class Player : MonoBehaviour
     {
         //Separación de lógicas
         Vector2 inputVector = gameInput.GetMovementVectorNorm();
-        float playerSize = 1f;
+        float playerRadius = 0.5f;
+        float playerHeight = 2f;
+        float movementDistance = movementsSpeed * Time.deltaTime;
 
         Vector3 movementDirection;
         movementDirection = new Vector3(inputVector.x, 0f, inputVector.y);
 
-        bool canPlayerMove = !Physics.Raycast(transform.position, movementDirection, playerSize);
+        bool canPlayerMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, movementDirection, movementDistance);
+
+        if (!canPlayerMove)
+        {
+            //Try to move in X direction
+            Vector3 movementDirectionX = new Vector3(movementDirection.x,0,0);
+            canPlayerMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, movementDirectionX, movementDistance); 
+            if(canPlayerMove)
+            {
+                // Allowed to move on X axis
+                movementDirection = movementDirectionX;
+            }
+            else
+            {
+                //Try to move in Z direction
+                Vector3 movementDirectionZ = new Vector3(0,0,movementDirection.z);
+                canPlayerMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, movementDirectionZ, movementDistance);
+
+                // Allowed to move on Z axis
+                if(canPlayerMove)
+                {
+                    movementDirection = movementDirectionZ;
+                }
+            }
+            //Else = Cannot move in any dir
+        }
 
         if (canPlayerMove)
         {
-            transform.position += movementDirection * movementsSpeed * Time.deltaTime;  //Time.deltatime para que la velociadad sea independiente del framerate.
+            transform.position += movementDirection * movementDistance;  //Time.deltatime para que la velociadad sea independiente del framerate.
         }
 
         //Euler o Quaternion mes complicats. Slerp interpola entre 2 puntos (Transiciones sin Mixamo)
