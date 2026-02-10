@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -11,15 +12,22 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        //Separación de lógicas
+        Movement();
+        Interactions();
+    }
+
+    public bool IsWalking()
+    {
+        return isWalking;
+    }
+
+    private void Movement()
+    {
         Vector2 inputVector = gameInput.GetMovementVectorNorm();
+        Vector3 movementDirection = new Vector3(inputVector.x, 0f, inputVector.y);
         float playerRadius = 0.5f;
         float playerHeight = 2f;
         float movementDistance = movementsSpeed * Time.deltaTime;
-
-        Vector3 movementDirection;
-        movementDirection = new Vector3(inputVector.x, 0f, inputVector.y);
-
         bool canPlayerMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, movementDirection, movementDistance);
 
         if (!canPlayerMove)
@@ -57,8 +65,13 @@ public class Player : MonoBehaviour
         isWalking = movementDirection != Vector3.zero;
     }
 
-    public bool IsWalking()
+    private void Interactions()
     {
-        return isWalking;
+
+        Vector2 inputVector = gameInput.GetMovementVectorNorm();
+        Vector3 movementDirection = new Vector3(inputVector.x, 0f, inputVector.y);
+        float InteractionDistance = 2f;
+
+        Physics.Raycast(transform.position, movementDirection, out RaycastHit raycastHit, InteractionDistance);
     }
 }
