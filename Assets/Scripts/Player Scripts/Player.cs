@@ -7,13 +7,41 @@ public class Player : MonoBehaviour
     //VARS
     [SerializeField] private float movementsSpeed = 5f; //Variables publicas permiten editar desde el editor de Unity pero cualquier clase puede acceder.
     [SerializeField] private GameInput gameInput;
+    [SerializeField] private LayerMask counterLayerMask;
     private bool isWalking;
+    private Vector3 lastInteractDirection;
+
+    private void Start()
+    {
+        gameInput.OnInteractAction += GameInput_OnInteractAction;
+    }
+
+    private void GameInput_OnInteractAction(object sender, System.EventArgs e)
+    {
+        Vector2 inputVector = gameInput.GetMovementVectorNorm();
+        Vector3 movementDirection = new Vector3(inputVector.x, 0f, inputVector.y);
+
+        if(movementDirection != Vector3.zero)
+        {
+            lastInteractDirection = movementDirection;
+        }
+        
+        float interactionDistance = 2f;
+        if(Physics.Raycast(transform.position, lastInteractDirection, out RaycastHit raycastHit, interactionDistance, counterLayerMask))
+        {
+            if(raycastHit.transform.TryGetComponent(out EmptyCounter emptyCounter))
+            {
+                emptyCounter.Interact();
+            }
+        }
+        
+    }
 
     // Update is called once per frame
     private void Update()
     {
         Movement();
-        Interactions();
+        //Interactions();
     }
 
     public bool IsWalking()
@@ -65,13 +93,25 @@ public class Player : MonoBehaviour
         isWalking = movementDirection != Vector3.zero;
     }
 
+    //Erase - refractor dupe
     private void Interactions()
     {
 
         Vector2 inputVector = gameInput.GetMovementVectorNorm();
         Vector3 movementDirection = new Vector3(inputVector.x, 0f, inputVector.y);
-        float InteractionDistance = 2f;
 
-        Physics.Raycast(transform.position, movementDirection, out RaycastHit raycastHit, InteractionDistance);
+        if(movementDirection != Vector3.zero)
+        {
+            lastInteractDirection = movementDirection;
+        }
+        
+        float interactionDistance = 2f;
+        if(Physics.Raycast(transform.position, lastInteractDirection, out RaycastHit raycastHit, interactionDistance, counterLayerMask))
+        {
+            if(raycastHit.transform.TryGetComponent(out EmptyCounter emptyCounter))
+            {
+                //emptyCounter.Interact();
+            }
+        }
     }
 }
