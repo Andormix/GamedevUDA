@@ -1489,6 +1489,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EmptyCounter (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3988625145934701612, guid: 03ad2abc272046345bdea9b63c21efc9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4803026797957056722, guid: 03ad2abc272046345bdea9b63c21efc9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1
@@ -1527,6 +1531,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4803026797957056722, guid: 03ad2abc272046345bdea9b63c21efc9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8854549262732515002, guid: 03ad2abc272046345bdea9b63c21efc9, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1584,6 +1592,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4803026797957056722, guid: 03ad2abc272046345bdea9b63c21efc9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8854549262732515002, guid: 03ad2abc272046345bdea9b63c21efc9, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

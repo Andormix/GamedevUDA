@@ -4,12 +4,30 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+
+    public static Player Instance{ get; private set; }
+
     //VARS
     [SerializeField] private float movementsSpeed = 5f; //Variables publicas permiten editar desde el editor de Unity pero cualquier clase puede acceder.
     [SerializeField] private GameInput gameInput;
     [SerializeField] private LayerMask counterLayerMask;
+
     private bool isWalking;
     private Vector3 lastInteractDirection;
+    private EmptyCounter selectedFurniture;
+
+    public event EventHandler<OnSelectedFurnitureChangedEventArgs> OnSelectedFurnitureChanged;
+    public class OnSelectedFurnitureChangedEventArgs : EventArgs
+    {
+        public EmptyCounter selectedCounter;
+    }
+
+
+    private void Awake()
+    {
+        //Singelton
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -18,21 +36,9 @@ public class Player : MonoBehaviour
 
     private void GameInput_OnInteractAction(object sender, System.EventArgs e)
     {
-        Vector2 inputVector = gameInput.GetMovementVectorNorm();
-        Vector3 movementDirection = new Vector3(inputVector.x, 0f, inputVector.y);
-
-        if(movementDirection != Vector3.zero)
+        if (selectedFurniture != null)
         {
-            lastInteractDirection = movementDirection;
-        }
-        
-        float interactionDistance = 2f;
-        if(Physics.Raycast(transform.position, lastInteractDirection, out RaycastHit raycastHit, interactionDistance, counterLayerMask))
-        {
-            if(raycastHit.transform.TryGetComponent(out EmptyCounter emptyCounter))
-            {
-                emptyCounter.Interact();
-            }
+            selectedFurniture.Interact();
         }
         
     }
@@ -41,7 +47,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         Movement();
-        //Interactions();
+        Interactions();
     }
 
     public bool IsWalking()
@@ -110,8 +116,29 @@ public class Player : MonoBehaviour
         {
             if(raycastHit.transform.TryGetComponent(out EmptyCounter emptyCounter))
             {
-                //emptyCounter.Interact();
+                if (emptyCounter != selectedFurniture)
+                {
+                    SetSelectedCounter(emptyCounter);
+                }
+            }
+            else
+            {
+                SetSelectedCounter(null);
             }
         }
+        else
+        {
+            SetSelectedCounter(null);
+        }
+        //Debug.Log(selectedFurniture);
+    }
+
+    private void SetSelectedCounter(EmptyCounter selectedFurniture)
+    {
+        this.selectedFurniture = selectedFurniture;
+        OnSelectedFurnitureChanged?.Invoke(this, new OnSelectedFurnitureChangedEventArgs
+        {
+            selectedCounter = selectedFurniture
+        });
     }
 }
