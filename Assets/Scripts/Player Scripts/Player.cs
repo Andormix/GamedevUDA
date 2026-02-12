@@ -95,7 +95,7 @@ public class Player : MonoBehaviour
         }
 
         //Euler o Quaternion mes complicats. Slerp interpola entre 2 puntos (Transiciones sin Mixamo)
-        transform.forward = Vector3.Slerp(transform.forward, movementDirection, movementsSpeed * Time.deltaTime);
+        transform.forward = Vector3.Slerp(transform.forward, movementDirection, 2 * movementsSpeed * Time.deltaTime);
         isWalking = movementDirection != Vector3.zero;
     }
 
