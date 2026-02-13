@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f8bd13cdce923449bcbf1e428ff625d, type: 3}
   m_Name: GreenPot
   m_EditorClassIdentifier: Assembly-CSharp::SceneObject
-  prefab: {fileID: 0}
-  sprite: {fileID: 0}
+  prefab: {fileID: 8872434046655749634, guid: b51e8d4638780ee4c99cf8e2d2b29f02, type: 3}
+  objectName: GreenPot
+  sprite: {fileID: 21300000, guid: 40cb7da58fc2eda49ad2ccc9d18e1cba, type: 3}

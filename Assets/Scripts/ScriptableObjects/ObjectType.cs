@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ObjectType : MonoBehaviour
+public class SceneObject : MonoBehaviour
 {
     [SerializeField] private SceneObjectSO sceneObjectSO;
 
