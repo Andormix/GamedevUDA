@@ -13,7 +13,23 @@ public class SceneObject : MonoBehaviour
 
     public void SetEmptyCounter(EmptyCounter emptyCounter)
     {
+        if(this.emptyCounter != null)
+        {
+            this.emptyCounter.ClearSceneObject();
+        }
+
         this.emptyCounter = emptyCounter;
+
+        //Make sure it is empty
+        if (emptyCounter.HasSceneObject())
+        {
+            Debug.Log("Error 01: Counter already have an object.");
+        }
+        emptyCounter.SetSceneObject(this);
+
+        //Update el visual
+        transform.parent = emptyCounter.GetSceneObjectTopTransform();
+        transform.localPosition = Vector3.zero;
     }
 
     public EmptyCounter GetEmptyCounter()
