@@ -15,12 +15,19 @@ public class EmptyCounter : MonoBehaviour
 
         if(sceneObject == null)
         {
-            Debug.Log("Empty Counter Interaction");
             Transform SceneObjecetTransform = Instantiate(sceneObjectSO.prefab, counterTopReference);
             SceneObjecetTransform.localPosition = Vector3.zero;
 
             sceneObject = SceneObjecetTransform.GetComponent<SceneObject>();
-            
+            sceneObject.SetEmptyCounter(this);
+
+            Debug.Log("Empty Counter Interaction - Spawning Object at:");
+            Debug.Log(sceneObject.GetEmptyCounter());
+        }
+        else
+        {
+            Debug.Log("Full Counter Interaction at: ");
+            Debug.Log(sceneObject.GetEmptyCounter());
         }
         //Debug.Log(SceneObjecetTransform.GetComponent<SceneObject>().GetSceneObjectSO().objectName);
 
