@@ -12,13 +12,12 @@ public class ObjectSpawner: InteractableAsset
     // Function that defines the logic when player interacts with the Counter.
     public override void Interact(Player player)
     {
-        //If no Object on Top: Create an object Instance of Type sceneObjectSO.
-        if(!HasSceneObject())
+        if(!player.HasSceneObject())
         {
             Transform SceneObjecetTransform = Instantiate(sceneObjectSO.prefab, GetSceneObjectSpawnReference());
             SceneObjecetTransform.GetComponent<SceneObject>().SetSceneObjectParent(player);
 
-            Debug.Log("Empty Counter Interaction - Spawning Object");
+            Debug.Log("Player/Spawner Interaction - Spawning Object");
         }
     }
 }

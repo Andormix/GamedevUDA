@@ -71,7 +71,7 @@ public class Player : MonoBehaviour, InterfaceSceneObjectParent
         {
             //Try to move in X direction
             Vector3 movementDirectionX = new Vector3(movementDirection.x,0,0);
-            canPlayerMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, movementDirectionX, movementDistance); 
+            canPlayerMove = movementDirection.x != 0 && !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, movementDirectionX, movementDistance); 
             if(canPlayerMove)
             {
                 // Allowed to move on X axis
