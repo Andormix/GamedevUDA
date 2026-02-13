@@ -3,14 +3,14 @@ using UnityEngine;
 public class EmptyCounter : MonoBehaviour
 {
 
-    [SerializeField] private Transform potPrefab;
+    [SerializeField] private SceneObject ScenceObject;
     [SerializeField] private Transform counterTopReference;
 
     public void Interact()
     {
         Debug.Log("Empty Counter Interaction");
-        Transform potTransform = Instantiate(potPrefab, counterTopReference);
-        potTransform.localPosition = Vector3.zero;
+        Transform SceneObjecetTransform = Instantiate(ScenceObject.prefab, counterTopReference);
+        SceneObjecetTransform.localPosition = Vector3.zero;
 
     }
 }
