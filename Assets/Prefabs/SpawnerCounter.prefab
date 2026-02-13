@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6962108786052348208}
   - component: {fileID: 1775360081083224973}
   m_Layer: 6
-  m_Name: EmptyCounter
+  m_Name: SpawnerCounter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
