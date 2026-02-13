@@ -2,7 +2,7 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, InterfaceSceneObjectParent
 {
 
     public static Player Instance{ get; private set; }
@@ -11,6 +11,9 @@ public class Player : MonoBehaviour
     [SerializeField] private float movementsSpeed = 5f; //Variables publicas permiten editar desde el editor de Unity pero cualquier clase puede acceder.
     [SerializeField] private GameInput gameInput;
     [SerializeField] private LayerMask counterLayerMask;
+    [SerializeField] private Transform sceneObjectSpawnPointReference;
+
+    private SceneObject sceneObject;
 
     private bool isWalking;
     private Vector3 lastInteractDirection;
@@ -38,7 +41,7 @@ public class Player : MonoBehaviour
     {
         if (selectedFurniture != null)
         {
-            selectedFurniture.Interact();
+            selectedFurniture.Interact(this);
         }
         
     }
@@ -140,5 +143,30 @@ public class Player : MonoBehaviour
         {
             selectedCounter = selectedFurniture
         });
+    }
+
+    public Transform GetSceneObjectTopTransform()
+    {
+        return sceneObjectSpawnPointReference;
+    }
+
+    public void SetSceneObject(SceneObject sceneObject)
+    {
+        this.sceneObject = sceneObject;
+    }
+
+    public SceneObject GetSceneObject()
+    {
+        return this.sceneObject;
+    }
+
+    public void ClearSceneObject()
+    {
+        this.sceneObject = null;
+    }
+
+    public bool HasSceneObject()
+    {
+        return sceneObject != null;
     }
 }

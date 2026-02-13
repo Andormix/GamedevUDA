@@ -2,11 +2,11 @@ using Unity.VectorGraphics;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class EmptyCounter : MonoBehaviour
+public class EmptyCounter : MonoBehaviour, InterfaceSceneObjectParent
 {
 
     [SerializeField] private SceneObjectSO sceneObjectSO;
-    [SerializeField] private Transform counterTopReference;
+    [SerializeField] private Transform sceneObjectSpawnPointReference;
     private SceneObject sceneObject;
 
     //DELETE
@@ -18,27 +18,28 @@ public class EmptyCounter : MonoBehaviour
         {
             if(sceneObject != null)
             {
-                sceneObject.SetEmptyCounter(secondCounter);
+                sceneObject.SetSceneObjectParent(secondCounter);
             }
         }
     }
 
-    public void Interact()
+    public void Interact(Player player)
     {
         //Debug.Log(SceneObjecetTransform.GetComponent<SceneObject>().GetSceneObjectSO().objectName);
 
         if(sceneObject == null)
         {
-            Transform SceneObjecetTransform = Instantiate(sceneObjectSO.prefab, counterTopReference);
-            SceneObjecetTransform.GetComponent<SceneObject>().SetEmptyCounter(this);
+            Transform SceneObjecetTransform = Instantiate(sceneObjectSO.prefab, sceneObjectSpawnPointReference);
+            SceneObjecetTransform.GetComponent<SceneObject>().SetSceneObjectParent(this);
 
-            Debug.Log("Empty Counter Interaction - Spawning Object at:");
-            Debug.Log(sceneObject.GetEmptyCounter());
+            Debug.Log("Empty Counter Interaction - Spawning Object");
+            //Debug.Log(sceneObject.GetEmptyCounter());
         }
-        else
+        else // Give Object to player
         {
-            Debug.Log("Full Counter Interaction at: ");
-            Debug.Log(sceneObject.GetEmptyCounter());
+            sceneObject.SetSceneObjectParent(player);
+            Debug.Log("Full Counter Interaction - Giving Object to Player ");
+            //Debug.Log(sceneObject.GetEmptyCounter());
         }
         //Debug.Log(SceneObjecetTransform.GetComponent<SceneObject>().GetSceneObjectSO().objectName);
 
@@ -46,7 +47,7 @@ public class EmptyCounter : MonoBehaviour
 
     public Transform GetSceneObjectTopTransform()
     {
-        return counterTopReference;
+        return sceneObjectSpawnPointReference;
     }
 
     public void SetSceneObject(SceneObject sceneObject)

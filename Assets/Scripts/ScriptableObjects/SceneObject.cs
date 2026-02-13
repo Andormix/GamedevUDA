@@ -4,36 +4,36 @@ public class SceneObject : MonoBehaviour
 {
     [SerializeField] private SceneObjectSO sceneObjectSO;
 
-    private EmptyCounter emptyCounter;
+    private InterfaceSceneObjectParent sceneObjectParent;
 
     public SceneObjectSO GetSceneObjectSO()
     {
         return sceneObjectSO;
     }
 
-    public void SetEmptyCounter(EmptyCounter emptyCounter)
+    public void SetSceneObjectParent(InterfaceSceneObjectParent sceneObjectParent)
     {
-        if(this.emptyCounter != null)
+        if(this.sceneObjectParent != null)
         {
-            this.emptyCounter.ClearSceneObject();
+            this.sceneObjectParent.ClearSceneObject();
         }
 
-        this.emptyCounter = emptyCounter;
+        this.sceneObjectParent = sceneObjectParent;
 
         //Make sure it is empty
-        if (emptyCounter.HasSceneObject())
+        if (sceneObjectParent.HasSceneObject())
         {
-            Debug.Log("Error 01: Counter already have an object.");
+            Debug.Log("Error 01: InterfaceSceneObjectParent already have an object.");
         }
-        emptyCounter.SetSceneObject(this);
+        sceneObjectParent.SetSceneObject(this);
 
         //Update el visual
-        transform.parent = emptyCounter.GetSceneObjectTopTransform();
+        transform.parent = sceneObjectParent.GetSceneObjectTopTransform();
         transform.localPosition = Vector3.zero;
     }
 
-    public EmptyCounter GetEmptyCounter()
+    public InterfaceSceneObjectParent GetSceneObjectParent()
     {
-        return emptyCounter;
+        return sceneObjectParent;
     }
 }

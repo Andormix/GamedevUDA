@@ -69,8 +69,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 184286178980b9544a1101acf06e2371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EmptyCounter
-  ScenceObject: {fileID: 11400000, guid: 9ff6a6515cbcce349ac7e24f41729fac, type: 2}
-  counterTopReference: {fileID: 1424621018460896081}
+  sceneObjectSO: {fileID: 0}
+  sceneObjectSpawnPointReference: {fileID: 1424621018460896081}
+  secondCounter: {fileID: 0}
+  testing: 0
 --- !u!1 &3988625145934701612
 GameObject:
   m_ObjectHideFlags: 0
