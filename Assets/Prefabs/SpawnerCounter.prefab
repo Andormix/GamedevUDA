@@ -64,15 +64,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2296770905677791251}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 184286178980b9544a1101acf06e2371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EmptyCounter
   sceneObjectSO: {fileID: 0}
   sceneObjectSpawnPointReference: {fileID: 1424621018460896081}
-  secondCounter: {fileID: 0}
-  testing: 0
 --- !u!1 &3988625145934701612
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,8 +116,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09dd5b9074fc90c43b53858b833afd0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelectedFurnitureVisual
-  emptyCounter: {fileID: 1775360081083224973}
-  visualGameObject: {fileID: 8854549262732515002}
+  interactableAsset: {fileID: 1775360081083224973}
+  visualGameObjectArray:
+  - {fileID: 8854549262732515002}
 --- !u!1 &4283045789441130518
 GameObject:
   m_ObjectHideFlags: 0

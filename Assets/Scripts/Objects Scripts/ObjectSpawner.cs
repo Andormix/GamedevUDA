@@ -1,13 +1,16 @@
-using Unity.VectorGraphics;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class EmptyCounter : InteractableAsset, InterfaceSceneObjectParent
+public class ObjectSpawner : InteractableAsset, InterfaceSceneObjectParent
 {
-
+    // --------------------  VAR --------------------
     [SerializeField] private SceneObjectSO sceneObjectSO; // What kind of Object will spawn.
     [SerializeField] private Transform sceneObjectSpawnPointReference; // Position the Object will be placed when spawn.
     private SceneObject sceneObject; // Current Scene Object.
+
+
+    // --------------------  Unity Functions -------------------- 
+
+    // -------------------- Custom Functions -------------------- 
 
     // Function that defines the logic when player interacts with the Counter.
     public override void Interact(Player player)
@@ -28,7 +31,8 @@ public class EmptyCounter : InteractableAsset, InterfaceSceneObjectParent
         }
     }
 
-    // ---------------- Interface Functions ----------------
+    // -------------------- Interface Functions -------------------- 
+
     public Transform GetSceneObjectSpawnReference()
     {
         return sceneObjectSpawnPointReference;
@@ -53,4 +57,7 @@ public class EmptyCounter : InteractableAsset, InterfaceSceneObjectParent
     {
         return sceneObject != null;
     }
+
+
+
 }

@@ -2,17 +2,17 @@ using UnityEngine;
 
 public class SelectedFurnitureVisual : MonoBehaviour
 {
-    [SerializeField] private EmptyCounter emptyCounter;
-    [SerializeField] private GameObject visualGameObject;
+    [SerializeField] private InteractableAsset interactableAsset;
+    [SerializeField] private GameObject[] visualGameObjectArray;
 
     private void Start()
     {
-        Player.Instance.OnSelectedFurnitureChanged += Instance_OnSelectedFurnitureChanged;
+        Player.Instance.OnSelectedAssetChanged += Instance_OnSelectedFurnitureChanged;
     }
 
-    private void Instance_OnSelectedFurnitureChanged(object sender, Player.OnSelectedFurnitureChangedEventArgs e)
+    private void Instance_OnSelectedFurnitureChanged(object sender, Player.OnSelectedAssetChangedEventArgs e)
     {
-        if(e.selectedCounter == emptyCounter)
+        if(e.selectedCounter == interactableAsset)
         {
             Show();
         }
@@ -25,11 +25,17 @@ public class SelectedFurnitureVisual : MonoBehaviour
 
     private void Show()
     {
-        visualGameObject.SetActive(true);
+        foreach(GameObject visualGameObject in visualGameObjectArray)
+        {
+            visualGameObject.SetActive(true);
+        }
     }
 
     private void Hide()
     {
-        visualGameObject.SetActive(false);
+        foreach(GameObject visualGameObject in visualGameObjectArray)
+        {
+            visualGameObject.SetActive(false);
+        }
     }
 }

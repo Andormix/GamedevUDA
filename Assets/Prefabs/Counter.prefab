@@ -42,7 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2677128273899987022}
   - component: {fileID: 2859281692380956614}
-  - component: {fileID: 2677465537349013969}
+  - component: {fileID: -6440255401191423565}
   m_Layer: 6
   m_Name: Counter
   m_TagString: Untagged
@@ -89,7 +89,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0.5, z: 0}
---- !u!114 &2677465537349013969
+--- !u!114 &-6440255401191423565
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -98,9 +98,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2293424531440986470}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 184286178980b9544a1101acf06e2371, type: 3}
+  m_Script: {fileID: 11500000, guid: ae1eb86ec0850094b8ce3584c7644fd0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EmptyCounter
+  m_EditorClassIdentifier: Assembly-CSharp::ObjectSpawner
   sceneObjectSO: {fileID: 11400000, guid: 9ff6a6515cbcce349ac7e24f41729fac, type: 2}
   sceneObjectSpawnPointReference: {fileID: 1461042578629686954}
 --- !u!1 &5240335140216529890
@@ -328,8 +328,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09dd5b9074fc90c43b53858b833afd0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelectedFurnitureVisual
-  emptyCounter: {fileID: 0}
-  visualGameObject: {fileID: 7765265957691397779}
+  interactableAsset: {fileID: -6440255401191423565}
+  visualGameObjectArray:
+  - {fileID: 7765265957691397779}
 --- !u!1 &9065903675272982172
 GameObject:
   m_ObjectHideFlags: 0

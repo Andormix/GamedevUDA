@@ -17,12 +17,12 @@ public class Player : MonoBehaviour, InterfaceSceneObjectParent
 
     private bool isWalking;
     private Vector3 lastInteractDirection;
-    private EmptyCounter selectedFurniture;
+    private InteractableAsset selectedAsset;
 
-    public event EventHandler<OnSelectedFurnitureChangedEventArgs> OnSelectedFurnitureChanged;
-    public class OnSelectedFurnitureChangedEventArgs : EventArgs
+    public event EventHandler<OnSelectedAssetChangedEventArgs> OnSelectedAssetChanged;
+    public class OnSelectedAssetChangedEventArgs : EventArgs
     {
-        public EmptyCounter selectedCounter;
+        public InteractableAsset selectedCounter;
     }
 
 
@@ -39,9 +39,9 @@ public class Player : MonoBehaviour, InterfaceSceneObjectParent
 
     private void GameInput_OnInteractAction(object sender, System.EventArgs e)
     {
-        if (selectedFurniture != null)
+        if (selectedAsset != null)
         {
-            selectedFurniture.Interact(this);
+            selectedAsset.Interact(this);
         }
         
     }
@@ -117,11 +117,11 @@ public class Player : MonoBehaviour, InterfaceSceneObjectParent
         float interactionDistance = 2f;
         if(Physics.Raycast(transform.position, lastInteractDirection, out RaycastHit raycastHit, interactionDistance, counterLayerMask))
         {
-            if(raycastHit.transform.TryGetComponent(out EmptyCounter emptyCounter))
+            if(raycastHit.transform.TryGetComponent(out InteractableAsset interactableAsset))
             {
-                if (emptyCounter != selectedFurniture)
+                if (interactableAsset != selectedAsset)
                 {
-                    SetSelectedCounter(emptyCounter);
+                    SetSelectedCounter(interactableAsset);
                 }
             }
             else
@@ -133,15 +133,15 @@ public class Player : MonoBehaviour, InterfaceSceneObjectParent
         {
             SetSelectedCounter(null);
         }
-        //Debug.Log(selectedFurniture);
+        //Debug.Log(selectedAsset);
     }
 
-    private void SetSelectedCounter(EmptyCounter selectedFurniture)
+    private void SetSelectedCounter(InteractableAsset selectedAsset)
     {
-        this.selectedFurniture = selectedFurniture;
-        OnSelectedFurnitureChanged?.Invoke(this, new OnSelectedFurnitureChangedEventArgs
+        this.selectedAsset = selectedAsset;
+        OnSelectedAssetChanged?.Invoke(this, new OnSelectedAssetChangedEventArgs
         {
-            selectedCounter = selectedFurniture
+            selectedCounter = selectedAsset
         });
     }
 
