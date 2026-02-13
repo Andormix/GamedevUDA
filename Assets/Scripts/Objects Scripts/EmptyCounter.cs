@@ -5,47 +5,31 @@ using UnityEngine;
 public class EmptyCounter : MonoBehaviour, InterfaceSceneObjectParent
 {
 
-    [SerializeField] private SceneObjectSO sceneObjectSO;
-    [SerializeField] private Transform sceneObjectSpawnPointReference;
-    private SceneObject sceneObject;
+    [SerializeField] private SceneObjectSO sceneObjectSO; // What kind of Object will spawn.
+    [SerializeField] private Transform sceneObjectSpawnPointReference; // Position the Object will be placed when spawn.
+    private SceneObject sceneObject; // Current Scene Object.
 
-    //DELETE
-    [SerializeField] private EmptyCounter secondCounter;
-    [SerializeField] private bool testing;
-    private void Update()
-    {
-        if(testing && Input.GetKeyDown(KeyCode.T))
-        {
-            if(sceneObject != null)
-            {
-                sceneObject.SetSceneObjectParent(secondCounter);
-            }
-        }
-    }
-
+    // Function that defines the logic when player interacts with the Counter.
     public void Interact(Player player)
     {
-        //Debug.Log(SceneObjecetTransform.GetComponent<SceneObject>().GetSceneObjectSO().objectName);
-
+        //If no Object on Top: Create an object Instance of Type sceneObjectSO.
         if(sceneObject == null)
         {
             Transform SceneObjecetTransform = Instantiate(sceneObjectSO.prefab, sceneObjectSpawnPointReference);
             SceneObjecetTransform.GetComponent<SceneObject>().SetSceneObjectParent(this);
 
             Debug.Log("Empty Counter Interaction - Spawning Object");
-            //Debug.Log(sceneObject.GetEmptyCounter());
         }
-        else // Give Object to player
+        else // If Object on Top: Give Object to player
         {
             sceneObject.SetSceneObjectParent(player);
             Debug.Log("Full Counter Interaction - Giving Object to Player ");
-            //Debug.Log(sceneObject.GetEmptyCounter());
-        }
-        //Debug.Log(SceneObjecetTransform.GetComponent<SceneObject>().GetSceneObjectSO().objectName);
 
+        }
     }
 
-    public Transform GetSceneObjectTopTransform()
+    // ---------------- Interface Functions ----------------
+    public Transform GetSceneObjectSpawnReference()
     {
         return sceneObjectSpawnPointReference;
     }

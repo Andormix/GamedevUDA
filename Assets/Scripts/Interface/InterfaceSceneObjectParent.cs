@@ -2,7 +2,7 @@ using UnityEngine;
 
 public interface InterfaceSceneObjectParent
 {
-    public Transform GetSceneObjectTopTransform();
+    public Transform GetSceneObjectSpawnReference();
     public void SetSceneObject(SceneObject sceneObject);
     public SceneObject GetSceneObject();
     public void ClearSceneObject();

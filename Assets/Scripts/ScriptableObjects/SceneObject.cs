@@ -28,7 +28,7 @@ public class SceneObject : MonoBehaviour
         sceneObjectParent.SetSceneObject(this);
 
         //Update el visual
-        transform.parent = sceneObjectParent.GetSceneObjectTopTransform();
+        transform.parent = sceneObjectParent.GetSceneObjectSpawnReference();
         transform.localPosition = Vector3.zero;
     }
 

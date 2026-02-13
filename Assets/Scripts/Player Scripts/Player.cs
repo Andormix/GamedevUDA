@@ -102,7 +102,7 @@ public class Player : MonoBehaviour, InterfaceSceneObjectParent
         isWalking = movementDirection != Vector3.zero;
     }
 
-    //Erase - refractor dupe
+    
     private void Interactions()
     {
 
@@ -145,7 +145,8 @@ public class Player : MonoBehaviour, InterfaceSceneObjectParent
         });
     }
 
-    public Transform GetSceneObjectTopTransform()
+    // ---------------- Interface Functions ----------------
+    public Transform GetSceneObjectSpawnReference()
     {
         return sceneObjectSpawnPointReference;
     }
