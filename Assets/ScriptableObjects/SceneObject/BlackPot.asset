@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f8bd13cdce923449bcbf1e428ff625d, type: 3}
-  m_Name: Pot
+  m_Name: BlackPot
   m_EditorClassIdentifier: Assembly-CSharp::SceneObject
-  prefab: {fileID: 0}
-  sprite: {fileID: 0}
+  prefab: {fileID: 8872434046655749634, guid: 2c91d817c4e23cd45b9f0734ada2da96, type: 3}
+  sprite: {fileID: 21300000, guid: 40cb7da58fc2eda49ad2ccc9d18e1cba, type: 3}

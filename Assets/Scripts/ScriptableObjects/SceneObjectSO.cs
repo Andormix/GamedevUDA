@@ -1,10 +1,10 @@
 using UnityEngine;
 
 [CreateAssetMenu()]
-public class SceneObject : ScriptableObject
+public class SceneObjectSO : ScriptableObject
 {
     public Transform prefab;
-    private string objectName;
+    public string objectName;
     public Sprite sprite;
     
 }

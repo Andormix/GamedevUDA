@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8872434046655749634}
-  - component: {fileID: 3857704875393861724}
+  - component: {fileID: 4342513226143618455}
   m_Layer: 0
-  m_Name: PlantPot Empty
+  m_Name: PlantPotG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 1042162064138223714}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3857704875393861724
+--- !u!114 &4342513226143618455
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4e3d047b35baf74ab6c63dc92252a54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObjectType
-  sceneObjectSO: {fileID: 11400000, guid: 9ff6a6515cbcce349ac7e24f41729fac, type: 2}
+  sceneObjectSO: {fileID: 11400000, guid: 190f154f20aa8e14484f0096be105648, type: 2}
 --- !u!1 &5782475551148814221
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,7 +113,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d4bc1ffc95e035049b96f8b4b52fd5bf, type: 2}
+  - {fileID: 2100000, guid: 5e3972038b5c8634cb76a167e34f845f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
