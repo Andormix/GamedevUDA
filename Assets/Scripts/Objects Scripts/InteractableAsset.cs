@@ -12,6 +12,11 @@ public class InteractableAsset : MonoBehaviour, InterfaceSceneObjectParent
         Debug.LogError("InteractableAsset.Interact should not be triggerd");
     }
 
+    public virtual void InteractAct(Player player)
+    {
+        Debug.LogError("InteractableAsset.Interact should not be triggerd");
+    }
+
     // ---------------- Interface Functions ----------------
     public Transform GetSceneObjectSpawnReference()
     {

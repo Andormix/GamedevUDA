@@ -35,6 +35,7 @@ public class Player : MonoBehaviour, InterfaceSceneObjectParent
     private void Start()
     {
         gameInput.OnInteractAction += GameInput_OnInteractAction;
+        gameInput.OnInteractActAction += GameInput_OnInteractActAction;
     }
 
     private void GameInput_OnInteractAction(object sender, System.EventArgs e)
@@ -42,6 +43,15 @@ public class Player : MonoBehaviour, InterfaceSceneObjectParent
         if (selectedAsset != null)
         {
             selectedAsset.Interact(this);
+        }
+        
+    }
+
+    private void GameInput_OnInteractActAction(object sender, System.EventArgs e)
+    {
+        if (selectedAsset != null)
+        {
+            selectedAsset.InteractAct(this);
         }
         
     }
@@ -81,7 +91,7 @@ public class Player : MonoBehaviour, InterfaceSceneObjectParent
             {
                 //Try to move in Z direction
                 Vector3 movementDirectionZ = new Vector3(0,0,movementDirection.z);
-                canPlayerMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, movementDirectionZ, movementDistance);
+                canPlayerMove = movementDirection.z != 0 && !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, movementDirectionZ, movementDistance);
 
                 // Allowed to move on Z axis
                 if(canPlayerMove)

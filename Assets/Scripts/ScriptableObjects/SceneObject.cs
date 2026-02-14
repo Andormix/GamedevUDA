@@ -36,4 +36,10 @@ public class SceneObject : MonoBehaviour
     {
         return sceneObjectParent;
     }
+
+    public void DeleteObject()
+    {
+        sceneObjectParent.ClearSceneObject();
+        Destroy(gameObject);
+    }
 }
