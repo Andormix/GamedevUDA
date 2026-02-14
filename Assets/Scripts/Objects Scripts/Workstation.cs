@@ -30,12 +30,8 @@ public class Workstation : InteractableAsset
         if(HasSceneObject())
         {
             GetSceneObject().DeleteObject();
+            SceneObject.SpawnSceneObject(processedSceneObjectSO, this);
             Debug.Log("Player/Workstation Interaction - Deleting Object and Creating New One");
-
-            Transform SceneObjecetTransform = Instantiate(processedSceneObjectSO.prefab, GetSceneObjectSpawnReference());
-            SceneObjecetTransform.GetComponent<SceneObject>().SetSceneObjectParent(this);
-
-            Debug.Log("Player/Spawner Interaction - Spawning Object");
         }
     }
 }

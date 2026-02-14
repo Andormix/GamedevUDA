@@ -14,9 +14,8 @@ public class ObjectSpawner: InteractableAsset
     {
         if(!player.HasSceneObject())
         {
-            Transform SceneObjecetTransform = Instantiate(sceneObjectSO.prefab, GetSceneObjectSpawnReference());
-            SceneObjecetTransform.GetComponent<SceneObject>().SetSceneObjectParent(player);
 
+            SceneObject.SpawnSceneObject(sceneObjectSO, player);
             Debug.Log("Player/Spawner Interaction - Spawning Object");
         }
     }

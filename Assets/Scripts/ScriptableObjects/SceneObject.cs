@@ -42,4 +42,14 @@ public class SceneObject : MonoBehaviour
         sceneObjectParent.ClearSceneObject();
         Destroy(gameObject);
     }
+
+    //Spawns an object and set it to parent.
+    public static SceneObject SpawnSceneObject(SceneObjectSO sceneObjectSO, InterfaceSceneObjectParent sceneObjectParent)
+    {
+        Transform SceneObjecetTransform = Instantiate(sceneObjectSO.prefab);
+        SceneObject sceneObject = SceneObjecetTransform.GetComponent<SceneObject>();
+        sceneObject.SetSceneObjectParent(sceneObjectParent); 
+        return sceneObject;
+        
+    }
 }
