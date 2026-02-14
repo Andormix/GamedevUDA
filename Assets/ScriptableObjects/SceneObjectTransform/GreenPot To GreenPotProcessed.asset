@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SceneObjectTransformSO
   input: {fileID: 11400000, guid: 190f154f20aa8e14484f0096be105648, type: 2}
   output: {fileID: 11400000, guid: ae6d25fe0e5e06a4aba35fb5ab44ac50, type: 2}
+  workProgressMax: 2

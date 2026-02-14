@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f8bd13cdce923449bcbf1e428ff625d, type: 3}
   m_Name: RedPot
   m_EditorClassIdentifier: Assembly-CSharp::SceneObjectSO
-  prefab: {fileID: 0}
-  objectName: 
-  sprite: {fileID: 0}
+  prefab: {fileID: 8872434046655749634, guid: 499ada4c8ca12434eadfdd33d9ff433d, type: 3}
+  objectName: RedPot
+  sprite: {fileID: 21300000, guid: 40cb7da58fc2eda49ad2ccc9d18e1cba, type: 3}

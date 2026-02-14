@@ -1,7 +1,14 @@
+using System;
 using UnityEngine;
 
 public class Workstation : InteractableAsset
 {
+
+    public event EventHandler<OnProgressChangedEventArgs> OnProgressChanged;
+    public class OnProgressChangedEventArgs : EventArgs
+    {
+        public float progressNormalized;
+    }
 
     [SerializeField] private SceneObjectTransformSO[] sceneObjectTransformArray;
     private int workProgress;
@@ -18,6 +25,13 @@ public class Workstation : InteractableAsset
                 {
                     player.GetSceneObject().SetSceneObjectParent(this);
                     workProgress = 0;
+
+                    SceneObjectTransformSO sceneObjectTransformSO = GetSceneObjectTransformSO(GetSceneObject().GetSceneObjectSO());
+                    OnProgressChanged?.Invoke(this, new OnProgressChangedEventArgs
+                    {
+                        progressNormalized = workProgress/(float)sceneObjectTransformSO.workProgressMax
+                    });
+
                 }
             }
         }
@@ -36,6 +50,11 @@ public class Workstation : InteractableAsset
         {
             workProgress++;
             SceneObjectTransformSO sceneObjectTransformSO = GetSceneObjectTransformSO(GetSceneObject().GetSceneObjectSO());
+            OnProgressChanged?.Invoke(this, new OnProgressChangedEventArgs
+            {
+                progressNormalized = workProgress/(float)sceneObjectTransformSO.workProgressMax
+            });
+
             if(workProgress >= sceneObjectTransformSO.workProgressMax)
             {
                 SceneObjectSO outputSceneObjectSO = GetOutputForInput(GetSceneObject().GetSceneObjectSO());
