@@ -3,7 +3,7 @@ using UnityEngine;
 public class Workstation : InteractableAsset
 {
 
-    [SerializeField] private SceneObjectSO processedSceneObjectSO;
+    [SerializeField] private SceneObjectTransformSO[] sceneObjectTransformArray;
 
     // Function that defines the logic when player interacts with the Counter.
     public override void Interact(Player player)
@@ -12,8 +12,11 @@ public class Workstation : InteractableAsset
         {
             if(player.HasSceneObject())
             {
-                //Drop Object Here
-                player.GetSceneObject().SetSceneObjectParent(this);
+                //Drop Object Here If Object can be worked.
+                if(HasObjectTransform(player.GetSceneObject().GetSceneObjectSO()))
+                {
+                    player.GetSceneObject().SetSceneObjectParent(this);
+                }
             }
         }
         else
@@ -27,11 +30,38 @@ public class Workstation : InteractableAsset
 
     public override void InteractAct(Player player)
     {
-        if(HasSceneObject())
+        if(HasSceneObject() && HasObjectTransform(GetSceneObject().GetSceneObjectSO()))
         {
+            SceneObjectSO outputSceneObjectSO = GetOutputForInput(GetSceneObject().GetSceneObjectSO());
             GetSceneObject().DeleteObject();
-            SceneObject.SpawnSceneObject(processedSceneObjectSO, this);
+
+            SceneObject.SpawnSceneObject(outputSceneObjectSO, this);
             Debug.Log("Player/Workstation Interaction - Deleting Object and Creating New One");
         }
+    }
+
+    private bool HasObjectTransform(SceneObjectSO inputSceneObjectSO)
+    {
+        foreach(SceneObjectTransformSO sceneObjectTransformSO in sceneObjectTransformArray)
+        {
+            if(sceneObjectTransformSO.input == inputSceneObjectSO)
+            {
+                return true;
+            }
+        }
+        return false;
+        
+    }
+
+    private SceneObjectSO GetOutputForInput(SceneObjectSO inputSceneObjectSO)
+    {
+        foreach(SceneObjectTransformSO sceneObjectTransformSO in sceneObjectTransformArray)
+        {
+            if(sceneObjectTransformSO.input == inputSceneObjectSO)
+            {
+                return sceneObjectTransformSO.output;
+            }
+        }
+        return null;
     }
 }
